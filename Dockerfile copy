@@ -1,3 +1,4 @@
+
 # Multi-stage build: Build for Linux 64-bit
 FROM ubuntu:latest AS builder-amd64
 RUN apt-get update && apt-get install -y wget tar && apt-get clean
@@ -14,13 +15,8 @@ ENV CACHE_SIZE=30
 # Copy Meson CDN binaries from the AMD64 builder
 COPY --from=builder-amd64 /meson_cdn-linux-amd64 /meson_cdn-linux-amd64
 
-# Install Meson CDN and configure
-RUN cd /meson_cdn-linux-amd64 && \
-    ./service install meson_cdn && \
-    ./meson_cdn config set --token=$TOKEN --https_port=$HTTPS_PORT --cache.size=$CACHE_SIZE
-
 # Expose any necessary ports
 EXPOSE $HTTPS_PORT
 
 # Start Meson CDN service
-CMD ["/meson_cdn-linux-amd64/service", "start", "meson_cdn"]
+CMD ["/bin/sh"]
