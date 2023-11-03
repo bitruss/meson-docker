@@ -19,5 +19,8 @@ COPY --from=builder-amd64 /meson_cdn-linux-amd64 /meson_cdn-linux-amd64
 # Expose any necessary ports
 EXPOSE $HTTPS_PORT
 
+# Set the working directory
+WORKDIR /meson_cdn-linux-amd64
+
 # Start Meson CDN service
-CMD ["/bin/sh"]
+CMD ["./meson_cdn"]
