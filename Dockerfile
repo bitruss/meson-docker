@@ -19,6 +19,7 @@ ENV CACHE_SIZE=30
 
 # Create a startup script to configure Meson CDN and start the service
 COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
 
 # Run the startup script when the container starts
 CMD ["/startup.sh"]
