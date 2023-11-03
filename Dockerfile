@@ -9,6 +9,7 @@ RUN wget 'https://staticassets.meson.network/public/meson_cdn/v3.1.20/meson_cdn-
 
 # Final image for AMD64
 FROM ubuntu:latest
+EXPOSE 443
 ENV TOKEN=""
 ENV HTTPS_PORT=443
 ENV CACHE_SIZE=30
